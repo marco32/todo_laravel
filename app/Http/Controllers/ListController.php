@@ -19,6 +19,13 @@ class ListController extends Controller
         $list->save();
 		return redirect('/');
 	}
-
+	public function deleteList($id)
+	{
+		$list=Liste::find($id);
+		//dd($list->name);
+		$del=DB::table('todolist')->where('name', $list->name)->delete();
+		$list->delete();
+		return redirect('/');
+	}
 }
  ?>

@@ -1,3 +1,13 @@
 .true{
  text-decoration: line-through;
 }
+.align{
+	padding-top: 7px;
+}
+.chang{
+	height: 1.7em;
+	padding-top: 1.3px;
+}
+li{
+	list-style: none;
+}

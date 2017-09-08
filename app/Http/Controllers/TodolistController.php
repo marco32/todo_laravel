@@ -13,15 +13,31 @@ class TodolistController extends Controller
 	// Function get all bdd "todolist/list" and return this view.
 	public function getAll()
 	{
-		$todolist=Todolist::all();
+		$todolist=Todolist::orderby('name')->get();
 		$list=DB::table('list')->get();
 
 		return view('/welcome', ['todolist' =>$todolist],['list' =>$list] );
 
 	}
 
+	// Function get in bdd "list" and "todolist" if name egal request and return this view.
+	public function tri(Request $request)
+	{ 
+	
+		 if($request->tri == "all"){
+			return redirect('/');
+		 }else{
+		 	$name=$request->tri;
+		 $list=DB::table('list')->get();
+		 $todolist=Todolist::where('name', $name)->get();
+		 	
+
+		 return view('/welcome', ['todolist' =>$todolist],['list' =>$list] );
+
+		 }
+	}
 	// Function update with this "ID".
-	public function updateTodolist($id)
+	public function updateTodolist($id, $tri)
 	{
 		$Todolist=Todolist::find($id);
 
@@ -58,7 +74,16 @@ class TodolistController extends Controller
 				$Todolist->delete();
 				return redirect('/');
 	}
-	
+	public function updtask(Request $request)
+	{
+		$id= $request->id;
+		$todolist= Todolist::find($id);
+		$todolist->name = $todolist->name;
+		$todolist->task = $request->task;
+		$todolist->created_at = $todolist->created_at;
+		$todolist->save();
+		return redirect('/');
+	}
 }
 
  ?>

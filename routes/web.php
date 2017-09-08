@@ -15,10 +15,11 @@ Route::get('/', 'TodolistController@getAll');
 Route::post('/addList', 'ListController@addList');
 
 Route::post('/addTodolist', 'TodolistController@addTodolist');
-Route::get('/updateTodolist/{id}', 'TodolistController@updateTodolist');
+Route::get('/updateTodolist/{id}/{tri}', 'TodolistController@updateTodolist');
 Route::post('/deleteTodolist/{id}', 'TodolistController@deleteTodolist');
+Route::get('/t', 'TodolistController@tri');
+Route::get('/deleteList/{id}', 'ListController@deleteList');
 
 
 // In Progress
-Route::post('/updateList', 'ListController@updateList');
-Route::post('/deleteList', 'ListController@deleteList');
+Route::post('/updtask', 'TodolistController@updtask');
